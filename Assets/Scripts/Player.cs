@@ -66,14 +66,30 @@ public class Player : MonoBehaviour
 		// Check if the "Jump" button (space) has been pressed down.
 		if(Input.GetButtonDown("Jump"))
 		{
-			// Set our upward velocty
-			velocity.y = m_jumpSpeed;
-
-			// TODO: Set jumping animation parameter
-
-			// TODO: Disallow air jumping!
-
+			Debug.Log("Trying jump");
+			// Disallow air jumping!
 			// TODO: Double/triple jumping functionality?
+
+			// Get the collider attached to this player
+			Collider2D collider = GetComponent<Collider2D>();
+
+			// Get the LayerMask for the ground layer - we need this for our next
+			// function call.
+			LayerMask groundLayer = LayerMask.GetMask("Ground");
+
+			// Ask the collider if we are touching the ground layer.
+			bool touchingGround = collider.IsTouchingLayers(groundLayer);
+
+			// If we are in fact touching the ground,
+			//    only then do we apply the jump!
+			//    Otherwise we ignore it.
+			if (touchingGround)
+			{
+				// Set our upward velocty
+				velocity.y = m_jumpSpeed;
+
+				// TODO: Set jumping animation parameter
+			}
 		}
 
 		// Now just update the rigidbody with this new velocty
