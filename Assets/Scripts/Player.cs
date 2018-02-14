@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 	// Exposed Variables
 	public float m_health = 100;
 	public float m_speed = 10;
+	public float m_jumpSpeed = 50;
 	public float m_invulnDuration = 1;
 	public float m_blinkDuration = 0.2f;
 
@@ -59,10 +60,25 @@ public class Player : MonoBehaviour
 		//    multiplied by the designer variable m_speed.
 		velocity.x = horizontal * m_speed;
 
-		// Now just update the rigidbody with this new velocty
-		rigidBody.velocity = velocity;
-
 		// TODO: Set running animation parameter
+
+		// Handle jumping
+		// Check if the "Jump" button (space) has been pressed down.
+		if(Input.GetButtonDown("Jump"))
+		{
+			// Set our upward velocty
+			velocity.y = m_jumpSpeed;
+
+			// TODO: Set jumping animation parameter
+
+			// TODO: Disallow air jumping!
+
+			// TODO: Double/triple jumping functionality?
+		}
+
+		// Now just update the rigidbody with this new velocty
+		// This will update the rigidbody for both running and jumping!
+		rigidBody.velocity = velocity;
 
 
 		// Blink if we are invulnerable
