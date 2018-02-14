@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4497754160301508}
   - component: {fileID: 212015139065380054}
   - component: {fileID: 61413243762207420}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BlockSprites-Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -10,10 +10,12 @@ public class Player : MonoBehaviour
 	public float m_jumpSpeed = 50;
 	public float m_invulnDuration = 1;
 	public float m_blinkDuration = 0.2f;
+	public int m_allowedAirJumps = 0;
 
 	// Private Variables
 	private float m_invulnEnd = 0;
 	private float m_blinkEnd = 0;
+	private int m_numAirJumps = 0;
 	#endregion
 
 	#region Public Functions
@@ -66,9 +68,7 @@ public class Player : MonoBehaviour
 		// Check if the "Jump" button (space) has been pressed down.
 		if(Input.GetButtonDown("Jump"))
 		{
-			Debug.Log("Trying jump");
-			// Disallow air jumping!
-			// TODO: Double/triple jumping functionality?
+			// First we need to check if we are touching the ground!
 
 			// Get the collider attached to this player
 			Collider2D collider = GetComponent<Collider2D>();
@@ -80,13 +80,34 @@ public class Player : MonoBehaviour
 			// Ask the collider if we are touching the ground layer.
 			bool touchingGround = collider.IsTouchingLayers(groundLayer);
 
+			// If we are touching the ground,
+			//    we can reset our air jump count to 0
+			if (touchingGround)
+				m_numAirJumps = 0;
+
+			// Normally we are only allowed to jump if we are touching the ground.
+			bool allowedToJump = touchingGround;
+
+			// However, if our allowed air jumps are 
+			//    higher than our current air jump count
+			//    (meaning we have at least 1 jump left)
+			//    we are also allowed to jump,
+			//    even if we aren't touching the ground!
+			if (m_allowedAirJumps > m_numAirJumps)
+				allowedToJump = true;
+
 			// If we are in fact touching the ground,
 			//    only then do we apply the jump!
 			//    Otherwise we ignore it.
-			if (touchingGround)
+			if (allowedToJump)
 			{
 				// Set our upward velocty
 				velocity.y = m_jumpSpeed;
+
+				// If we aren't currently touching the ground, 
+				//    we need to add to our air jump count.
+				if (!touchingGround)
+					++m_numAirJumps;
 
 				// TODO: Set jumping animation parameter
 			}
