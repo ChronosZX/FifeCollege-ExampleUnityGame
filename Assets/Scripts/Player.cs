@@ -44,6 +44,9 @@ public class Player : MonoBehaviour
 	#region Unity Functions
 	void Update()
 	{
+		// Get the animator so we can set various values on it
+		Animator animator = GetComponent<Animator>();
+
 		// Check if we are pressing a button to more horizontally
 		// This will be a number between -1 and 1 based on whether the
 		//    player has been pressing the left or right buttons (or a/d)
@@ -62,24 +65,33 @@ public class Player : MonoBehaviour
 		//    multiplied by the designer variable m_speed.
 		velocity.x = horizontal * m_speed;
 
-		// TODO: Set running animation parameter
+		// Set our animator speed value to control running/walking/standing animation
+		animator.SetFloat("Speed", Mathf.Abs(velocity.x));
+
+		// Turn left or right based on the velocity
+		// Only do this if we actually have a velocity - otherwise we would always return to facing one direction when standing.
+		if (Mathf.Abs(velocity.x) > 0)
+			GetComponent<SpriteRenderer>().flipX = velocity.x < 0;
 
 		// Handle jumping
+		// First we need to check if we are touching the ground!
+
+		// Get the collider attached to this player
+		Collider2D collider = GetComponent<Collider2D>();
+
+		// Get the LayerMask for the ground layer - we need this for our next
+		// function call.
+		LayerMask groundLayer = LayerMask.GetMask("Ground");
+
+		// Ask the collider if we are touching the ground layer.
+		bool touchingGround = collider.IsTouchingLayers(groundLayer);
+
+		// Set our animator TouchingGround value to control our jumping/standing animation
+		animator.SetBool("TouchingGround", touchingGround);
+
 		// Check if the "Jump" button (space) has been pressed down.
 		if(Input.GetButtonDown("Jump"))
 		{
-			// First we need to check if we are touching the ground!
-
-			// Get the collider attached to this player
-			Collider2D collider = GetComponent<Collider2D>();
-
-			// Get the LayerMask for the ground layer - we need this for our next
-			// function call.
-			LayerMask groundLayer = LayerMask.GetMask("Ground");
-
-			// Ask the collider if we are touching the ground layer.
-			bool touchingGround = collider.IsTouchingLayers(groundLayer);
-
 			// If we are touching the ground,
 			//    we can reset our air jump count to 0
 			if (touchingGround)
@@ -108,8 +120,6 @@ public class Player : MonoBehaviour
 				//    we need to add to our air jump count.
 				if (!touchingGround)
 					++m_numAirJumps;
-
-				// TODO: Set jumping animation parameter
 			}
 		}
 
