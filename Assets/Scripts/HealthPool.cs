@@ -50,6 +50,11 @@ public class HealthPool : MonoBehaviour
 		}
 	}
 
+	public void Heal(float _healing)
+	{
+		m_health = m_health + _healing;
+	}
+
 	public bool IsInvulnerable()
 	{
 		return Time.time < m_invulnEnd;

@@ -1107,6 +1107,48 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 79b6d474e4aae4b8e93be1280af8a1f4, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &1270318453
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4411962166527488, guid: 948e41c09a4cd46ebb26ee4298e34f37, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -3.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 4411962166527488, guid: 948e41c09a4cd46ebb26ee4298e34f37, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -4.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 4411962166527488, guid: 948e41c09a4cd46ebb26ee4298e34f37, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4411962166527488, guid: 948e41c09a4cd46ebb26ee4298e34f37, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4411962166527488, guid: 948e41c09a4cd46ebb26ee4298e34f37, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4411962166527488, guid: 948e41c09a4cd46ebb26ee4298e34f37, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4411962166527488, guid: 948e41c09a4cd46ebb26ee4298e34f37, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4411962166527488, guid: 948e41c09a4cd46ebb26ee4298e34f37, type: 2}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 948e41c09a4cd46ebb26ee4298e34f37, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1270502607 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1114278752980464, guid: 04bce4299df874c37b9727f657d52e30,
