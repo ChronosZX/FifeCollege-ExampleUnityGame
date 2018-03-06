@@ -9,7 +9,7 @@ public class DamageOnMelee : MonoBehaviour {
 	public float m_damage = 10;
 	public string m_meleeButton = "";
 	public Collider2D m_meleeTrigger = null;
-	public float m_meleeCooldown = 1f;
+	public float m_cooldownDuration = 1f;
 
 	// Private variables
 	private float m_cooldownEnd = 0;
@@ -49,8 +49,8 @@ public class DamageOnMelee : MonoBehaviour {
 			}
 
 			// Record when our cooldown should end.
-			// This makes us unable to attack for m_meleeCooldown seconds
-			m_cooldownEnd = Time.time + m_meleeCooldown;
+			// This makes us unable to attack for m_cooldownDuration seconds
+			m_cooldownEnd = Time.time + m_cooldownDuration;
 
 			// TODO: Effects for the melee attack
 			//		- Animation
@@ -58,8 +58,10 @@ public class DamageOnMelee : MonoBehaviour {
 		}
 	}
 
+	// Are we on cooldown?
 	public bool IsOnCooldown()
 	{
+		// true if the current time is less than the cooldown end time
 		return Time.time < m_cooldownEnd;
 	}
 	#endregion
