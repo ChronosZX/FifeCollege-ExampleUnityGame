@@ -239,11 +239,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4995929232102584, guid: f96ee10fd599d49a5b79685e1eaf24e7, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.12
+      value: -1.74
       objectReference: {fileID: 0}
     - target: {fileID: 4995929232102584, guid: f96ee10fd599d49a5b79685e1eaf24e7, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -2.03
+      value: -3.72
       objectReference: {fileID: 0}
     - target: {fileID: 4995929232102584, guid: f96ee10fd599d49a5b79685e1eaf24e7, type: 2}
       propertyPath: m_LocalPosition.z
@@ -269,11 +269,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114916170871763268, guid: f96ee10fd599d49a5b79685e1eaf24e7,
-        type: 2}
-      propertyPath: m_speed
-      value: 6
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f96ee10fd599d49a5b79685e1eaf24e7, type: 2}
   m_IsPrefabParent: 0
@@ -282,23 +277,26 @@ GameObject:
   m_PrefabParentObject: {fileID: 1160129602067192, guid: f96ee10fd599d49a5b79685e1eaf24e7,
     type: 2}
   m_PrefabInternal: {fileID: 520519434}
---- !u!95 &520519436
-Animator:
-  serializedVersion: 3
+--- !u!4 &520519441 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4995929232102584, guid: f96ee10fd599d49a5b79685e1eaf24e7,
+    type: 2}
+  m_PrefabInternal: {fileID: 520519434}
+--- !u!114 &520519443
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 520519435}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: be08efd50a9094304b21308d39372b2f, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3235c76927124ce6bdae66fbfacb99a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_damage: 10
+  m_meleeButton: Fire1
+  m_meleeTrigger: {fileID: 2023257177}
+  m_meleeCooldown: 1
 --- !u!1001 &593923621
 Prefab:
   m_ObjectHideFlags: 0
@@ -724,6 +722,45 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 40e9ba07bdc7c4a36a3a21c171d2a56c, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1270502607 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1114278752980464, guid: 04bce4299df874c37b9727f657d52e30,
+    type: 2}
+  m_PrefabInternal: {fileID: 1428761793}
+--- !u!114 &1270502612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1270502607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad91b8d75e0af4347a34bbded0944adc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_health: 100
+  m_invulnDuration: 0
+  m_destroyOnDeath: 1
+--- !u!50 &1270502613
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1270502607}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!4 &1317354777 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4497754160301508, guid: 40e9ba07bdc7c4a36a3a21c171d2a56c,
@@ -743,11 +780,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4124585790044188, guid: 04bce4299df874c37b9727f657d52e30, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 2.09
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4124585790044188, guid: 04bce4299df874c37b9727f657d52e30, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.75
+      value: -3.87
       objectReference: {fileID: 0}
     - target: {fileID: 4124585790044188, guid: 04bce4299df874c37b9727f657d52e30, type: 2}
       propertyPath: m_LocalPosition.z
@@ -772,6 +809,11 @@ Prefab:
     - target: {fileID: 4124585790044188, guid: 04bce4299df874c37b9727f657d52e30, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 61133998116395644, guid: 04bce4299df874c37b9727f657d52e30,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 04bce4299df874c37b9727f657d52e30, type: 2}
@@ -1403,6 +1445,60 @@ Transform:
   - {fileID: 1599511395}
   m_Father: {fileID: 0}
   m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2023257176
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2023257178}
+  - component: {fileID: 2023257177}
+  m_Layer: 0
+  m_Name: MeleeTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &2023257177
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2023257176}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!4 &2023257178
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2023257176}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.358, y: 0, z: 0}
+  m_LocalScale: {x: 0.15062958, y: 0.25639072, z: 0.25639072}
+  m_Children: []
+  m_Father: {fileID: 520519441}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2105596289
 Prefab:

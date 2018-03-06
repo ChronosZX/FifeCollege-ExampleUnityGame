@@ -5,40 +5,14 @@ public class Player : MonoBehaviour
 {
 	#region Variables
 	// Exposed Variables
-	public float m_health = 100;
 	public float m_speed = 10;
 	public float m_jumpSpeed = 50;
-	public float m_invulnDuration = 1;
 	public float m_blinkDuration = 0.2f;
 	public int m_allowedAirJumps = 0;
 
 	// Private Variables
-	private float m_invulnEnd = 0;
 	private float m_blinkEnd = 0;
 	private int m_numAirJumps = 0;
-	#endregion
-
-	#region Public Functions
-	// Damage the player - may cause death!
-	public void Damage(float _damage)
-	{
-		// Don't deal damage if we are invulnerable
-		// (Check current time against what time it should be to
-		//    stop being invulnerable)
-		if (Time.time >= m_invulnEnd)
-		{
-			// Reduce our health by the damage taken
-			m_health = m_health - _damage;
-
-			// Record when our invulnerability should end.
-			// This makes us become invulnerable for m_invulnDuration seconds
-			m_invulnEnd = Time.time + m_invulnDuration;
-
-			// TODO: Play sound!
-			// TODO: Bounce player?
-			// TODO: Handle death!
-		}
-	}
 	#endregion
 
 	#region Unity Functions
@@ -70,8 +44,19 @@ public class Player : MonoBehaviour
 
 		// Turn left or right based on the velocity
 		// Only do this if we actually have a velocity - otherwise we would always return to facing one direction when standing.
+		bool flip = velocity.x < 0;
+		float flipMult = 1;
+		if (flip)
+		{
+			flipMult = -1;
+		}
+
 		if (Mathf.Abs(velocity.x) > 0)
-			GetComponent<SpriteRenderer>().flipX = velocity.x < 0;
+		{
+			transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * flipMult, 
+				transform.localScale.y, 
+				transform.localScale.z);
+		}
 
 		// Handle jumping
 		// First we need to check if we are touching the ground!
@@ -143,7 +128,7 @@ public class Player : MonoBehaviour
 		SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
 
 		// If we should be invulnerable...
-		if (Time.time < m_invulnEnd)
+		if (GetComponent<HealthPool>().IsInvulnerable())
 		{
 			// Check if it is time to turn off or on our sprite.
 			if (Time.time >= m_blinkEnd)
