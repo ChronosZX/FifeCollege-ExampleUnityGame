@@ -18,6 +18,10 @@ public class DamageOnStomp : MonoBehaviour
 		if (healthPool != null)
 		{
 			healthPool.Damage(m_damage);
+
+			// TODO: Effects for the attack
+			//		- Animation
+			//		- Sound
 		}
 	}
 	#endregion

@@ -45,6 +45,10 @@ public class ShootProjectile : MonoBehaviour
 			// Record when our cooldown should end.
 			// This makes us unable to attack for m_cooldownDuration seconds
 			m_cooldownEnd = Time.time + m_cooldownDuration;
+
+			// TODO: Effects for the attack
+			//		- Animation
+			//		- Sound
 		}
 	}
 
