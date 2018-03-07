@@ -2,33 +2,56 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour 
+public class EquippedItems : MonoBehaviour 
 {
 	// -------------------------------------------------------------------------------------------
 
 	// Exposed variables
-	public int m_maxItems = 10;
-	public List<GameObject> m_itemRoots = new List<GameObject>();
-	public GameObject m_selector;
+	public List<string> m_slotNames = new List<string>();
+	public List<GameObject> m_equipmentRoots = new List<GameObject>();
 
 	// -------------------------------------------------------------------------------------------
 
 	// Private variables
-	private List<string> m_itemNames = new List<string>();
-	private List<GameObject> m_itemObjects = new List<GameObject>();
-	private int m_selectedItem = 0;
+	private List<string> m_equippedSlots = new List<string>();
+	private List<GameObject> m_equipmentObjects = new List<GameObject>();
 
 	// -------------------------------------------------------------------------------------------
 
 	// Adds an item to the inventory. Returns true if it was successfully added, false if not
-	public bool AddItem(string _itemName, GameObject _itemObject)
+	public bool Equip(string _slotName, GameObject _equipmentObject, bool replace = true)
 	{
-		// If we are not uet at the max number of items...
-		if (m_itemNames.Count < m_maxItems)
+		// First, check if the slot is present in our slot list
+		if (!m_slotNames.Contains(_slotName))
 		{
+			// If not, print an error and exit the function early.
+			Debug.LogError("Couldn't find slot "+_slotName);
+			return false;
+		}
+
+		// If replace is true, remove anything currently in the slot
+		if (replace == true)
+		{
+			RemoveSlot(_slotName);
+		}
+
+		// If we still have something equipped, we have failed to equip this one.
+		if (HasEquippedSlot(_slotName) == true)
+		{
+			// do nothing and return false
+			return false;
+		}
+		// If we either DON'T have an item in this slot OR we SHOULD replace it...
+		else
+		{
+			if (alreadyEquippedSlot == true)
+			{
+				RemoveSlot(_slotName);
+			}
+
 			// Add the item to the list
-			m_itemNames.Add(_itemName);
-			m_itemObjects.Add(_itemObject);
+			m_equippedSlots.Add(_slotName);
+			m_equipmentObjects.Add(_equipmentObject);
 
 			// Add the item visually to the inventory
 			UpdateVisuals();
@@ -45,30 +68,30 @@ public class Inventory : MonoBehaviour
 
 	// -------------------------------------------------------------------------------------------
 
-	// Checks if an item is in the inventory - returns true if it is, false if not
-	public bool HasItem(string _itemName)
+	// Checks if a slot has an item equipped in it - returns true if it does, false if not
+	public bool HasEquippedSlot(string _slotName)
 	{
 		// Call the Contains function for the item list
-		return m_itemNames.Contains(_itemName);
+		return m_slotNames.Contains(_slotName);
 	}
 
 	// -------------------------------------------------------------------------------------------
 
-	// Removes an item from the inventory - returns true if it was there and removed, false if not
-	public bool RemoveItem(string _itemName)
+	// Removes any equipment in the given slot - returns true if it was there and removed, false if not
+	public bool RemoveSlot(string _slotName)
 	{
 		// If the item is present in the inventory...
-		if (HasItem(_itemName))
+		if (HasEquippedSlot(_slotName))
 		{
-			// Get the index of the item
-			int itemIndex = m_itemNames.IndexOf(_itemName);
+			// Get the index of the slot
+			int slotIndex = m_equippedSlots.IndexOf(_slotName);
 
-			// Remove the item from the name list
-			m_itemNames.Remove(_itemName);
+			// Remove the slot from the list of equipped slots
+			m_equippedSlots.Remove(_slotName);
 
-			// Remove the item from the object list, and destroy it
-			Destroy(m_itemObjects[itemIndex]);
-			m_itemObjects.RemoveAt(itemIndex);
+			// Destroy and remove the equipment object
+			Destroy(m_equipmentObjects[slotIndex]);
+			m_equipmentObjects.RemoveAt(slotIndex);
 
 			// Remove the item visually from the list
 			UpdateVisuals();
