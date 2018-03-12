@@ -20,6 +20,8 @@ public class Goomba : MonoBehaviour {
         Debug.Log("collision!");
         
         Player mario = collision.collider.GetComponent<Player>();
-        mario.ApplyDamage(damage);
+		if (mario != null) {
+			mario.ApplyDamage(damage);
+		}
     }
 }
