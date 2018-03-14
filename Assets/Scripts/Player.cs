@@ -41,9 +41,9 @@ public class Player : MonoBehaviour {
 				renderer.enabled = !renderer.enabled;
 				// Set the next time we should blink to our current time plus the blink duration
 				blinkEndTime = Time.time + blinkDuration;
-			}
-		}
-	}
+			} // end if (Time.time >= blinkEndTime)
+		} // end if (Time.time >= invulnerableEndTime)
+	} // end Update()
 
 	public void Damage(float damageToDeal)
 	{
