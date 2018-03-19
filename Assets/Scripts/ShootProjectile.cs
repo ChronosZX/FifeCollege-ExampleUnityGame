@@ -1,20 +1,56 @@
-﻿using System.Collections;
+﻿// *********************************************************************************************************************
+// File: ShootProjectile.cs
+// Purpose: Fire a projectile based on button press
+// Project: Fife College Unity Toolkit
+// Copyright Fife College 2018
+// *********************************************************************************************************************
+
+
+// *********************************************************************************************************************
+#region Imports
+// *********************************************************************************************************************
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#endregion
+// *********************************************************************************************************************
 
-public class ShootProjectile : MonoBehaviour 
-{
+
+// *********************************************************************************************************************
+public class ShootProjectile : MonoBehaviour {
+// *********************************************************************************************************************
+
+	// *****************************************************************************************************************
 	#region Variables
+	// *****************************************************************************************************************
 	// Exposed Variables
+	[Header("Primary")]
+	[Tooltip("What projectile should be fired")]
 	public GameObject m_projectilePrefab = null;
+	[Tooltip("How much cooldown between firing?")]
 	public float m_cooldownDuration = 1f;
+	[Tooltip("Speed the projectile should be fired at")]
 	public float m_projectileSpeed = 10;
+	[Tooltip("Point from which the projectile should be fired")]
 	public Transform m_firingPoint;
+
+	[Header("Effects")]
+	[Tooltip("The sound that should be played on fire")]
+	public AudioClip m_fireSound = null;
+	[Tooltip("The animator that should be used for firing animations")]
+	public Animator m_animator;
+	[Tooltip("The name of the trigger parameter that should be used for firing effects")]
+	public string m_fireTrigger;
 
 	// Private variables
 	private float m_cooldownEnd = 0;
 	#endregion
-	
+	// *****************************************************************************************************************
+
+
+	// *****************************************************************************************************************
+	#region Unity Functions
+	// *****************************************************************************************************************
 	// Update is called once per frame
 	void Update () 
 	{
@@ -46,16 +82,38 @@ public class ShootProjectile : MonoBehaviour
 			// This makes us unable to attack for m_cooldownDuration seconds
 			m_cooldownEnd = Time.time + m_cooldownDuration;
 
-			// TODO: Effects for the attack
-			//		- Animation
-			//		- Sound
+			// If we have specified a sound to play...
+			if (m_fireSound != null) {
+				// Play the sound for dying at this locaiton
+				AudioSource.PlayClipAtPoint(m_fireSound,transform.position);
+			}
+
+			// If we have supplied an animator and a trigger to use...
+			if (m_animator != null && m_fireTrigger != "") {
+				// Play death animation
+				m_animator.SetTrigger(m_fireTrigger);
+			}
 		}
 	}
+	// *****************************************************************************************************************
+	#endregion
+	// *****************************************************************************************************************
 
+
+
+	// *****************************************************************************************************************
+	#region Public Functions
+	// *****************************************************************************************************************
 	// Is our attack on cooldown?
 	public bool IsOnCooldown()
 	{
 		// true if the current time is less than the end time for the cooldown
 		return Time.time < m_cooldownEnd;
 	}
+	// *****************************************************************************************************************
+	#endregion
+	// *****************************************************************************************************************
+
+
 }
+// *********************************************************************************************************************

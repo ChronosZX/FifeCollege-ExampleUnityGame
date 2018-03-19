@@ -19,7 +19,7 @@ using UnityEngine;
 // *********************************************************************************************************************
 [RequireComponent(typeof(Collider2D))]
 public class AddCurrencyOnTouch : MonoBehaviour {
-	// *********************************************************************************************************************
+// *********************************************************************************************************************
 
 
 	// *****************************************************************************************************************
@@ -31,9 +31,9 @@ public class AddCurrencyOnTouch : MonoBehaviour {
 	[Tooltip("How much currency will be added?")]
 	public int m_amount = 1;
 	[Tooltip("Should we destroy this object after collecting it?")]
-	public bool m_destroyWhenAdded = true;
+	public bool m_destroyOnCollect = true;
 	[Tooltip("The sound that should be played when this currency is added")]
-	public AudioClip m_currencyAddSound = null;
+	public AudioClip m_collectSound = null;
 	#endregion
 	// *****************************************************************************************************************
 
@@ -53,14 +53,14 @@ public class AddCurrencyOnTouch : MonoBehaviour {
 			// if we successfully added it...
 			if (added) {
 				// If we should destroy this object, do so
-				if (m_destroyWhenAdded) {
+				if (m_destroyOnCollect) {
 					Destroy (gameObject);
 				}
 
 				// If we have a sound to play, play it
-				if (m_currencyAddSound) {
+				if (m_collectSound) {
 					// Play the sound for currency add at this locaiton
-					AudioSource.PlayClipAtPoint(m_currencyAddSound,transform.position);
+					AudioSource.PlayClipAtPoint(m_collectSound,transform.position);
 				}
 			}
 		}

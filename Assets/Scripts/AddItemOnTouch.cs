@@ -31,7 +31,7 @@ public class AddItemOnTouch : MonoBehaviour {
 	[Tooltip("How many items will be added?")]
 	public int m_amount = 1;
 	[Tooltip("Should we destroy this object after collecting it?")]
-	public bool m_destroyWhenAdded = true;
+	public bool m_destroyOnCollect = true;
 	[Tooltip("The sound that should be played when this item is collected")]
 	public AudioClip m_collectSound = null;
 	#endregion
@@ -51,7 +51,7 @@ public class AddItemOnTouch : MonoBehaviour {
 			itemPouch.AddItem(m_itemName, m_amount);
 
 			// If we should destroy this object, do so
-			if (m_destroyWhenAdded) {
+			if (m_destroyOnCollect) {
 				Destroy (gameObject);
 			}
 

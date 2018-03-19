@@ -46,9 +46,25 @@ public class HealthPool : MonoBehaviour {
 	public string m_damageTrigger;
 	[Tooltip("The name of the trigger parameter that should be used for death effects")]
 	public string m_deathTrigger;
+	[Tooltip("Should this object blink while invincible?")]
+	public bool m_blinkWhenInvincible;
+	[Tooltip("How long should we wait between blinks?")]
+	public float m_blinkDuration = 0.2f;
 
 	// Private Variables
 	private float m_invulnEnd = 0;
+	private float m_blinkEnd = 0;
+	#endregion
+	// *****************************************************************************************************************
+
+
+	// *****************************************************************************************************************
+	#region Public Functions
+	// *****************************************************************************************************************
+	void Update() {
+		
+	}
+	// *****************************************************************************************************************
 	#endregion
 	// *****************************************************************************************************************
 
@@ -114,9 +130,19 @@ public class HealthPool : MonoBehaviour {
 		return false;
 	}
 	// *****************************************************************************************************************
-	public void Heal(float _healing)
+	public bool Heal(float _healing, string _targetType)
 	{
-		m_health = m_health + _healing;
+		// the type matches...
+		if (_targetType == m_targetType) {
+			// add the health
+			m_health = m_health + _healing;
+
+			// we healed, so return true
+			return true;
+		}
+
+		// we did not heal, return false
+		return false;
 	}
 	// *****************************************************************************************************************
 	public bool IsInvulnerable()
@@ -128,5 +154,40 @@ public class HealthPool : MonoBehaviour {
 	// *****************************************************************************************************************
 
 
+	// *****************************************************************************************************************
+	#region Private Functions
+	// *****************************************************************************************************************
+	private void HandleBlink()
+	{
+		// Get the sprite renderer component from the Player's game object
+		// This is what we will disable and enable to make the blinking effect
+		SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+
+		// If we should be invulnerable and this object has a sprite renderer on it ...
+		if (spriteRenderer != null && IsInvulnerable())
+		{
+			// Check if it is time to turn off or on our sprite.
+			if (Time.time >= m_blinkEnd)
+			{
+				// If it is...
+				// Set our sprite renderers state to the opposite of
+				//     what it currently is
+				// In other words - toggle it.
+				spriteRenderer.enabled = !spriteRenderer.enabled;
+
+				// Record when we should next toggle our sprite renderer.
+				m_blinkEnd = Time.time + m_blinkDuration;
+			}
+		}
+		// If we should NOT be invulnerable...
+		else
+		{
+			// Make sure our sprite is showing!
+			spriteRenderer.enabled = true;
+		}
+	}
+	// *****************************************************************************************************************
+	#endregion
+	// *****************************************************************************************************************
 }
 // *********************************************************************************************************************
