@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4514929102096316}
   - component: {fileID: 212622657596519492}
   - component: {fileID: 95667059936425546}
-  - component: {fileID: 114552110928297288}
   - component: {fileID: 70263001741143776}
+  - component: {fileID: 114111298448981882}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Untagged
@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1313383731009680}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.96, y: -2.496, z: 0}
+  m_LocalPosition: {x: -0.96, y: -0.4959998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,7 +75,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114552110928297288
+--- !u!114 &114111298448981882
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -83,10 +83,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1313383731009680}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 235dc36175bc243609eb598824350738, type: 3}
+  m_Script: {fileID: 11500000, guid: fa880ed2086598744ac184a22fca246e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_scoreToAdd: 10
+  m_currencyType: score
+  m_amount: 1
+  m_destroyWhenAdded: 1
+  m_currencyAddSound: {fileID: 0}
 --- !u!212 &212622657596519492
 SpriteRenderer:
   m_ObjectHideFlags: 1

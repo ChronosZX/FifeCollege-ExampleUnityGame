@@ -21,7 +21,9 @@ GameObject:
   - component: {fileID: 4124585790044188}
   - component: {fileID: 212430958006952056}
   - component: {fileID: 61133998116395644}
-  - component: {fileID: 114067629335817826}
+  - component: {fileID: 50789588143138320}
+  - component: {fileID: 114267544685808212}
+  - component: {fileID: 114726460396638840}
   m_Layer: 0
   m_Name: Goomba
   m_TagString: Untagged
@@ -36,12 +38,32 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1114278752980464}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.04, y: -3.12, z: 0}
+  m_LocalPosition: {x: 0.1, y: -1.8699996, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50789588143138320
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1114278752980464}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &61133998116395644
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -51,7 +73,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.25}
@@ -67,7 +89,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
---- !u!114 &114067629335817826
+--- !u!114 &114267544685808212
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -75,10 +97,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 1114278752980464}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e4790066e4544661ab04821d24b8fae, type: 3}
+  m_Script: {fileID: 11500000, guid: ad91b8d75e0af4347a34bbded0944adc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_health: 1
+  m_invulnDuration: 0
+  m_destroyOnDeath: 1
+  m_targetType: enemy
+  m_damageSound: {fileID: 0}
+  m_deathSound: {fileID: 0}
+  m_animator: {fileID: 0}
+  m_damageTrigger: 
+  m_deathTrigger: 
+--- !u!114 &114726460396638840
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1114278752980464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c362aaa3fb75af41b3c5fe6571bcd10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_damage: 10
+  m_targetType: player
 --- !u!212 &212430958006952056
 SpriteRenderer:
   m_ObjectHideFlags: 1
