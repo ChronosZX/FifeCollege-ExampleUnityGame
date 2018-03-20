@@ -61,26 +61,28 @@ public class ShootProjectile : MonoBehaviour {
 			Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
 			// Determine the direction of the mouse relative to our position
-			// "normalized" means the vector has a length of 1, 
-			//   meaning we can multiply it by a speed to get an initial velocity for our projectile.
-			Vector3 direction = (mouseWorldPosition - m_firingPoint.position).normalized;
+			Vector2 direction = (mouseWorldPosition - m_firingPoint.position);
 
-			// Create a copy of our projectile
-			GameObject newProjectile = Instantiate(m_projectilePrefab);
+            // "normalize" changes the vector to have a length of 1, while keeping the direction -
+            //   meaning we can multiply it by a speed to get an initial velocity for our projectile.
+            direction.Normalize();
+
+            // Create a copy of our projectile
+            GameObject newProjectile = Instantiate(m_projectilePrefab);
 
 			// Set the projetile's starting position to our fire point
 			newProjectile.transform.position = m_firingPoint.position;
+            
+            // Get the rigidbody attached to the projectile
+            Rigidbody2D projectileBody = newProjectile.GetComponent<Rigidbody2D>();
 
-			// Get the rigidbody attached to the projectile
-			Rigidbody2D projectileBody = newProjectile.GetComponent<Rigidbody2D>();
+            // Set our projectile's velocity based on the direction we want it to go
+            // and our projectile speed variable
+            projectileBody.velocity = direction * m_projectileSpeed;
 
-			// Set our projectile's velocity based on the direction we want it to go
-			// and our projectile speed variable
-			projectileBody.velocity = direction * m_projectileSpeed;
-
-			// Record when our cooldown should end.
-			// This makes us unable to attack for m_cooldownDuration seconds
-			m_cooldownEnd = Time.time + m_cooldownDuration;
+            // Record when our cooldown should end.
+            // This makes us unable to attack for m_cooldownDuration seconds
+            m_cooldownEnd = Time.time + m_cooldownDuration;
 
 			// If we have specified a sound to play...
 			if (m_fireSound != null) {
