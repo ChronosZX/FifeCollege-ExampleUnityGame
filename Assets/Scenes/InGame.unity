@@ -266,6 +266,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_healing: 10
+  m_targetType: player
+  m_destroyOnCollect: 1
+  m_collectSound: {fileID: 0}
 --- !u!4 &295343930 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4497754160301508, guid: 40e9ba07bdc7c4a36a3a21c171d2a56c,
@@ -348,7 +351,6 @@ GameObject:
   - component: {fileID: 520519442}
   - component: {fileID: 520519437}
   - component: {fileID: 520519444}
-  - component: {fileID: 520519443}
   - component: {fileID: 520519445}
   - component: {fileID: 520519446}
   m_Layer: 0
@@ -396,6 +398,8 @@ MonoBehaviour:
   m_animator: {fileID: 0}
   m_damageTrigger: 
   m_deathTrigger: 
+  m_blinkWhenInvincible: 0
+  m_blinkDuration: 0.2
 --- !u!70 &520519438
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -426,7 +430,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -507,21 +511,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_speed: 6
   m_jumpSpeed: 10
-  m_blinkDuration: 0.1
   m_allowedAirJumps: 0
---- !u!114 &520519443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 520519435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3235c76927124ce6bdae66fbfacb99a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_damage: 10
-  m_targetType: player
+  m_inputAxisHorizontal: Horizontal
+  m_inputButtonJump: Jump
+  m_layerGround: Ground
+  m_animator: {fileID: 0}
+  m_speedParameter: Speed
+  m_touchingGroundParameter: TouchingGround
 --- !u!114 &520519444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -538,6 +534,9 @@ MonoBehaviour:
   m_cooldownDuration: 1
   m_projectileSpeed: 10
   m_firingPoint: {fileID: 2023257178}
+  m_fireSound: {fileID: 0}
+  m_animator: {fileID: 0}
+  m_fireTrigger: 
 --- !u!114 &520519445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1144,6 +1143,24 @@ Prefab:
     - {fileID: 114846482499142774, guid: 948e41c09a4cd46ebb26ee4298e34f37, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 948e41c09a4cd46ebb26ee4298e34f37, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1291143555 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1114278752980464, guid: 04bce4299df874c37b9727f657d52e30,
+    type: 2}
+  m_PrefabInternal: {fileID: 1428761793}
+--- !u!114 &1291143556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1291143555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eee1330539dd8941b74a25f36e13361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_damage: 10
+  m_targetType: player
 --- !u!4 &1317354777 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4497754160301508, guid: 40e9ba07bdc7c4a36a3a21c171d2a56c,
@@ -1193,7 +1210,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114726460396638840, guid: 04bce4299df874c37b9727f657d52e30, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 04bce4299df874c37b9727f657d52e30, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1445675492
