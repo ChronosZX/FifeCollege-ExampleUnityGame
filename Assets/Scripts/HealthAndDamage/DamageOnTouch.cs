@@ -1,6 +1,6 @@
 ﻿// *********************************************************************************************************************
-// File: DamageOnCollision.cs
-// Purpose: Deals damage to a health pool when this object collides with health pool
+// File: DamageOnTouch.cs
+// Purpose: Deals damage to a health pool when this collider intersects with health pool
 // Project: Fife College Unity Toolkit
 // Copyright Fife College 2018
 // *********************************************************************************************************************
@@ -18,7 +18,7 @@ using UnityEngine;
 
 // *********************************************************************************************************************
 [RequireComponent(typeof(Collider2D))]
-public class DamageOnCollision : MonoBehaviour {
+public class DamageOnTouch : MonoBehaviour {
 // *********************************************************************************************************************
 
 
@@ -38,18 +38,29 @@ public class DamageOnCollision : MonoBehaviour {
 	#region Unity Functions
 	// *****************************************************************************************************************
 	// When a trigger interaction starts involving this game object...
-	void OnCollisionEnter2D(Collision2D _collision)
+	void OnTriggerEnter2D(Collider2D _other)
 	{
 		// Check if the other collider that we hit has a HealthPool on it
-		HealthPool healthPool = _collision.collider.GetComponent<HealthPool>();
+		HealthPool healthPool = _other.GetComponent<HealthPool>();
 		if (healthPool != null) {
 			// Apply damage to the health pool
 			healthPool.Damage(m_damage, m_targetType);
 		}
-	}
-	// *****************************************************************************************************************
-	#endregion
-	// *****************************************************************************************************************
+    }
+    // When a collision interaction starts involving this game object...
+    void OnCollisionEnter2D(Collision2D _collision)
+    {
+        // Check if the other collider that we hit has a HealthPool on it
+        HealthPool healthPool = _collision.collider.GetComponent<HealthPool>();
+        if (healthPool != null)
+        {
+            // Apply damage to the health pool
+            healthPool.Damage(m_damage, m_targetType);
+        }
+    }
+    // *****************************************************************************************************************
+    #endregion
+    // *****************************************************************************************************************
 
 
 }
