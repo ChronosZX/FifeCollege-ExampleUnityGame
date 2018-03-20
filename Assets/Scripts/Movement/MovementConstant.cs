@@ -1,5 +1,5 @@
 ﻿// *********************************************************************************************************************
-// File: ConstantVelocity.cs
+// File: MovementConstant.cs
 // Purpose: Moves an object constantly in a velocity
 // Project: Fife College Unity Toolkit
 // Copyright Fife College 2018
@@ -18,7 +18,7 @@ using UnityEngine;
 
 // *********************************************************************************************************************
 [RequireComponent(typeof(Rigidbody2D))]
-public class ConstantVelocity : MonoBehaviour {
+public class MovementConstant : MonoBehaviour {
 // *********************************************************************************************************************
 
 
