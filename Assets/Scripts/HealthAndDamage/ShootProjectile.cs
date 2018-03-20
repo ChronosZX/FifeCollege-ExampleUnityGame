@@ -33,8 +33,10 @@ public class ShootProjectile : MonoBehaviour {
 	public float m_projectileSpeed = 10;
 	[Tooltip("Point from which the projectile should be fired")]
 	public Transform m_firingPoint;
+    [Tooltip("Button used to trigger attack")]
+    public string m_attackButton;
 
-	[Header("Effects")]
+    [Header("Effects")]
 	[Tooltip("The sound that should be played on fire")]
 	public AudioClip m_fireSound = null;
 	[Tooltip("The animator that should be used for firing animations")]
@@ -55,7 +57,7 @@ public class ShootProjectile : MonoBehaviour {
 	void Update () 
 	{
 		// If we have clicked the mouse button and our attack is not on cooldown...
-		if (Input.GetMouseButton(0) && !IsOnCooldown())
+		if (Input.GetButtonDown(m_attackButton) && !IsOnCooldown())
 		{
 			// Determine where the mouse is in the game world
 			Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -100,7 +102,6 @@ public class ShootProjectile : MonoBehaviour {
 	// *****************************************************************************************************************
 	#endregion
 	// *****************************************************************************************************************
-
 
 
 	// *****************************************************************************************************************
