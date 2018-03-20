@@ -41,35 +41,54 @@ public class AddHealthOnTouch : MonoBehaviour {
 	#region Unity Functions
 	// *****************************************************************************************************************
 	// When a trigger interaction starts involving this game object...
-	void OnTriggerEnter2D(Collider2D _collider)
+	void OnTriggerEnter2D(Collider2D _other)
 	{
-		// Get the health pool from our collided object
-		HealthPool healthPool = _collider.GetComponent<HealthPool>();
+        AttemptHeal(_other);
+    }
+    // When a collision interaction starts involving this game object...
+    void OnCollisionEnter2D(Collision2D _collision)
+    {
+        AttemptHeal(_collision.collider);
+    }
+    #endregion
+    // *****************************************************************************************************************
 
-		// If it had a health pool...
-		if (healthPool != null )
-		{
-			// Heal it by the amount set
-			bool healed = healthPool.Heal(m_healing, m_targetType);
 
-			// if we did in fact heal....
-			if (healed) {
+    // *****************************************************************************************************************
+    #region private Functions
+    // *****************************************************************************************************************
+    private void AttemptHeal(Collider2D _other)
+    {
+        // Get the health pool from our collided object
+        HealthPool healthPool = _other.GetComponent<HealthPool>();
 
-				// If we should destroy this object, do so
-				if (m_destroyOnCollect) {
-					Destroy (gameObject);
-				}
+        // If it had a health pool...
+        if (healthPool != null)
+        {
+            // Heal it by the amount set
+            bool healed = healthPool.Heal(m_healing, m_targetType);
 
-				// If we have a sound to play, play it
-				if (m_collectSound) {
-					// Play the sound for collecting at this locaiton
-					AudioSource.PlayClipAtPoint (m_collectSound, transform.position);
-				}
-			}
-		}
-	}
-	#endregion
-	// *****************************************************************************************************************
+            // if we did in fact heal....
+            if (healed)
+            {
+
+                // If we should destroy this object, do so
+                if (m_destroyOnCollect)
+                {
+                    Destroy(gameObject);
+                }
+
+                // If we have a sound to play, play it
+                if (m_collectSound)
+                {
+                    // Play the sound for collecting at this locaiton
+                    AudioSource.PlayClipAtPoint(m_collectSound, transform.position);
+                }
+            }
+        }
+    }
+    #endregion
+    // *****************************************************************************************************************
 
 }
 // *********************************************************************************************************************
