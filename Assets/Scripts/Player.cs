@@ -32,12 +32,13 @@ public class Player : MonoBehaviour {
 		// Put this velocity back into the physics system
 		ourRigidBody.velocity = velocity;
 
-
-
 		// Handle blinking while invulnerable:
 
 		// Get our sprite renderer component attached to this object
 		SpriteRenderer renderer = GetComponent<SpriteRenderer> ();
+
+		// Flip the sprite on the x axis only if velocity x is less than 0
+		renderer.flipX = velocity.x < 0;
 
 		// Are we done being invulnerable?
 		if (Time.time >= invulnerableEndTime) {
