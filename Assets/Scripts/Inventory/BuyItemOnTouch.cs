@@ -1,6 +1,6 @@
 ﻿// *********************************************************************************************************************
-// File: AddCurrencyOnTouch.cs
-// Purpose: Adds currency to a CurrencyPouch that touches this trigger
+// File: BuyItemOnTouch.cs
+// Purpose: Buys item to an ItemPouch that touches this trigger, if it has enough currency
 // Project: Fife College Unity Toolkit
 // Copyright Fife College 2018
 // *********************************************************************************************************************
@@ -18,22 +18,26 @@ using UnityEngine;
 
 // *********************************************************************************************************************
 [RequireComponent(typeof(Collider2D))]
-public class AddCurrencyOnTouch : MonoBehaviour {
-// *********************************************************************************************************************
+public class BuyItemOnTouch : MonoBehaviour {
+	// *********************************************************************************************************************
 
 
 	// *****************************************************************************************************************
 	#region Variables
 	// *****************************************************************************************************************
 	// Exposed Variables
-	[Tooltip("What type of currency should be added?")]
-	public string m_currencyType = "score";
-	[Tooltip("How much currency will be added?")]
+	[Tooltip("What type of item should be added?")]
+	public string m_itemName = "";
+	[Tooltip("How many items will be added?")]
 	public int m_amount = 1;
 	[Tooltip("Should we destroy this object after collecting it?")]
 	public bool m_destroyOnCollect = true;
-	[Tooltip("The sound that should be played when this currency is added")]
+	[Tooltip("The sound that should be played when this item is collected")]
 	public AudioClip m_collectSound = null;
+	[Tooltip("What type of currency does this item cost?")]
+	public string m_currencyName = "";
+	[Tooltip("How much does it cost?")]
+	public int m_currencyCost = 1;
 	#endregion
 	// *****************************************************************************************************************
 
@@ -60,17 +64,26 @@ public class AddCurrencyOnTouch : MonoBehaviour {
 	// *****************************************************************************************************************
 	#region Private Functions
 	// *****************************************************************************************************************
-	// This function actually adds the currency
 	private void HandleInteraction(Collider2D _other)
 	{
-		// Check if the other collider that we hit has a CurrencyPouch on it
-		CurrencyPouch currencyPouch = _other.GetComponent<CurrencyPouch>();
-		if (currencyPouch != null) {
-			// Attempt to add to the CurrencyPouch
-			bool added = currencyPouch.AddCurrency(m_currencyType, m_amount);
+		// Check if the other collider that we hit has a ItemPouch on it
+		ItemPouch otherItemPouch = _other.GetComponent<ItemPouch>();
+		// Check also if the other collider has a CurrencyPouch
+		CurrencyPouch otherCurrencyPouch = _other.GetComponent<CurrencyPouch>();
+		// Both ItemPouch and CurrencyPouch are needed to buy
+		if (otherItemPouch != null && otherCurrencyPouch != null) {
 
-			// if we successfully added it...
-			if (added) {
+			// Check if the other collider has enough currency
+			if (otherCurrencyPouch.GetCurrencyValue(m_currencyName) >= m_currencyCost)
+			{
+				// The player has enough money. We can buy the item!
+
+				// Take away the cost from the player's currency
+				otherCurrencyPouch.SpendCurrency(m_currencyName, m_currencyCost);
+
+				// Add to the ItemPouch
+				otherItemPouch.AddItem(m_itemName, m_amount);
+
 				// If we should destroy this object, do so
 				if (m_destroyOnCollect) {
 					Destroy (gameObject);
@@ -78,12 +91,16 @@ public class AddCurrencyOnTouch : MonoBehaviour {
 
 				// If we have a sound to play, play it
 				if (m_collectSound) {
-					// Play the sound for currency add at this locaiton
+					// Play the sound for collecting at this locaiton
 					AudioSource.PlayClipAtPoint(m_collectSound,transform.position);
 				}
-			}
-		}
-	}
+			} // end if (has enough money)
+
+			// If they don't have enough money, don't do anything.
+
+		} // end if (has item pouch and currency pouch)
+
+	} // end HandleInteraction()
 	// *****************************************************************************************************************
 	#endregion
 	// *****************************************************************************************************************

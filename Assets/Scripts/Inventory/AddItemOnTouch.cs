@@ -44,6 +44,24 @@ public class AddItemOnTouch : MonoBehaviour {
 	// When a trigger interaction starts involving this game object...
 	void OnTriggerEnter2D(Collider2D _other)
 	{
+		HandleInteraction(_other);
+	}
+	// *****************************************************************************************************************
+	// When a collision interaction starts involving this game object...
+	void OnCollisionEnter2D(Collision2D _collision)
+	{
+		HandleInteraction(_collision.collider);
+	}
+	// *****************************************************************************************************************
+	#endregion
+	// *****************************************************************************************************************
+
+
+	// *****************************************************************************************************************
+	#region Private Functions
+	// *****************************************************************************************************************
+	private void HandleInteraction(Collider2D _other)
+	{
 		// Check if the other collider that we hit has a ItemPouch on it
 		ItemPouch itemPouch = _other.GetComponent<ItemPouch>();
 		if (itemPouch != null) {
