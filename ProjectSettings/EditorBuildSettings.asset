@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Example Game - Mario/Scenes/Mario-TitleScreen.unity
+    guid: a9dcba33e49c24d9bbaee9489b2736cb
+  - enabled: 1
+    path: Assets/Example Game - Mario/Scenes/Mario-Level1-1.unity
+    guid: 1de011cb0649f47eaaabda2388babb99
