@@ -26,8 +26,8 @@ public class HealthPool : MonoBehaviour {
 	// *****************************************************************************************************************
 	// Exposed Variables
 	[Header("Primary")]
-	[Tooltip("How much health this object has")]
-	public float m_health = 100;
+	[Tooltip("How much health this object has to start with")]
+	public float m_maxHealth = 100;
 	[Tooltip("How long this object should be invulnerable after taking damage, in seconds")]
 	public float m_invulnDuration = 0;
 	[Tooltip("If true, this object will be destroyed when health reaches 0")]
@@ -54,15 +54,23 @@ public class HealthPool : MonoBehaviour {
 	// Private Variables
 	private float m_invulnEnd = 0;
 	private float m_blinkEnd = 0;
+	private float m_health = 100;
 	#endregion
 	// *****************************************************************************************************************
 
 
 	// *****************************************************************************************************************
-	#region Public Functions
+	#region Unity Functions
 	// *****************************************************************************************************************
+	// Called once when the object is created
+	void Start() {
+		// Set our health to match our max health
+		m_health = m_maxHealth;
+	}
+	// *****************************************************************************************************************
+	// Called every frame
 	void Update() {
-		
+		HandleBlink();
 	}
 	// *****************************************************************************************************************
 	#endregion
@@ -82,6 +90,12 @@ public class HealthPool : MonoBehaviour {
 		{
 			// Reduce our health by the damage taken
 			m_health = m_health - _damage;
+
+			// If the health would become negative, just make it 0
+			if (m_health < 0)
+			{
+				m_health = 0;
+			}
 
 			// Record when our invulnerability should end.
 			// This makes us become invulnerable for m_invulnDuration seconds
@@ -148,6 +162,11 @@ public class HealthPool : MonoBehaviour {
 	public bool IsInvulnerable()
 	{
 		return Time.time < m_invulnEnd;
+	}
+	// *****************************************************************************************************************
+	public float GetFractionHealth()
+	{
+		return m_health / m_maxHealth;
 	}
 	// *****************************************************************************************************************
 	#endregion

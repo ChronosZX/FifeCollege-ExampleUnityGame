@@ -1,6 +1,6 @@
 ﻿// *********************************************************************************************************************
-// File: DamageOnTouch.cs
-// Purpose: Deals damage to a health pool when this collider intersects with health pool
+// File: HealthBar.cs
+// Purpose: Displays visually the health of a HealthPool
 // Project: Fife College Unity Toolkit
 // Copyright Fife College 2018
 // *********************************************************************************************************************
@@ -17,8 +17,7 @@ using UnityEngine;
 
 
 // *********************************************************************************************************************
-[RequireComponent(typeof(Collider2D))]
-public class DamageOnTouch : MonoBehaviour {
+public class HealthBar : MonoBehaviour {
 // *********************************************************************************************************************
 
 
@@ -26,10 +25,10 @@ public class DamageOnTouch : MonoBehaviour {
 	#region Variables
 	// *****************************************************************************************************************
 	// Exposed Variables
-	[Tooltip("How much damage this object should do")]
-	public float m_damage = 10;
-	[Tooltip("The target type of the health pool must match this type in order to deal damage")]
-	public string m_targetType = "player";
+	[Tooltip("What HealthPool should we display?")]
+	public HealthPool m_healthPool;
+	[Tooltip("What sprite renderer is showing the fill of the health bar?")]
+	public SpriteRenderer m_healthBarFill;
 	#endregion
 	// *****************************************************************************************************************
 
@@ -37,31 +36,23 @@ public class DamageOnTouch : MonoBehaviour {
 	// *****************************************************************************************************************
 	#region Unity Functions
 	// *****************************************************************************************************************
-	// When a trigger interaction starts involving this game object...
-	void OnTriggerEnter2D(Collider2D _other)
+	// Called every frame
+	void Update()
 	{
-		// Check if the other collider that we hit has a HealthPool on it
-		HealthPool healthPool = _other.GetComponent<HealthPool>();
-		if (healthPool != null) {
-			// Apply damage to the health pool
-			healthPool.Damage(m_damage, m_targetType);
-		}
+		// Get the fraction/percentage of how much health the HealthPool currently has
+		float healthPercentage = m_healthPool.GetFractionHealth();
+
+		// Set the scale of our sprite renderer to match this
+		Vector3 scale = m_healthBarFill.transform.localScale;
+		scale.x = healthPercentage;
+		m_healthBarFill.transform.localScale = scale;
+
+		// NOTE: This is designed to work with fill sprites with a pivot point set to "Left". 
+		// Set this in the import settings for the sprite itself.
 	}
 	// *****************************************************************************************************************
-    // When a collision interaction starts involving this game object...
-    void OnCollisionEnter2D(Collision2D _collision)
-    {
-        // Check if the other collider that we hit has a HealthPool on it
-        HealthPool healthPool = _collision.collider.GetComponent<HealthPool>();
-        if (healthPool != null)
-        {
-            // Apply damage to the health pool
-            healthPool.Damage(m_damage, m_targetType);
-        }
-    }
-    // *****************************************************************************************************************
-    #endregion
-    // *****************************************************************************************************************
+	#endregion
+	// *****************************************************************************************************************
 
 
 }
