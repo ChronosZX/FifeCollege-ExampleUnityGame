@@ -12,6 +12,7 @@ public class Player : MonoBehaviour {
 
 	private float invulnerableEndTime = 0;
 	private float blinkEndTime = 0;
+	private bool hasDoubleJumped = false;
 
 	// Use this for initialization
 	void Start () {
@@ -41,13 +42,29 @@ public class Player : MonoBehaviour {
 		// Ask the collider if we are touching this layer
 		bool isTouchingGround = ourCollider.IsTouchingLayers(groundLayer);
 
+		// if we are touching the ground, reset our double jump
+		if (isTouchingGround == true) {
+			hasDoubleJumped = false;
+		}
+
+		// Normally only allowed to jump if touching the ground...
+		bool allowedToJump = isTouchingGround;
+
+		// If we aren't touching the ground but we haven't yet double jumped, allowed to jump should be true
+		if (isTouchingGround == false && hasDoubleJumped == false)
+			allowedToJump = true;
+
 		// Jump logic
 		bool jumpPressed = Input.GetButtonDown("Jump");
 
-		// Only jump if we have both pressed the button AND are touching the round
-		if (jumpPressed == true && isTouchingGround == true) {
+		// Only jump if we have both pressed the button AND are allowed to jump
+		if (jumpPressed == true && allowedToJump == true) {
 			// Apply jump to velocity
 			velocity.y = jumpSpeed;
+
+			// If we touched when we weren't on the ground, then we did a double jump
+			if (isTouchingGround == false)
+				hasDoubleJumped = true;
 		}
 
 
