@@ -31,11 +31,22 @@ public class Player : MonoBehaviour {
 		velocity.x = horizontal * speed;
 
 
+		// Determine if touching ground
+		// Get the collider attached to this object
+		Collider2D ourCollider = GetComponent<Collider2D>();
+
+		// Get the LayerMask fo the ground layer - we need this for the next function call
+		LayerMask groundLayer = LayerMask.GetMask("Ground");
+
+		// Ask the collider if we are touching this layer
+		bool isTouchingGround = ourCollider.IsTouchingLayers(groundLayer);
 
 		// Jump logic
 		bool jumpPressed = Input.GetButtonDown("Jump");
 
-		if (jumpPressed == true) {
+		// Only jump if we have both pressed the button AND are touching the round
+		if (jumpPressed == true && isTouchingGround == true) {
+			// Apply jump to velocity
 			velocity.y = jumpSpeed;
 		}
 
