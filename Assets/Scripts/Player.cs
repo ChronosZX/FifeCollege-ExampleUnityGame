@@ -7,7 +7,7 @@ public class Player : MonoBehaviour {
 	public float speed = 5;
 	public float health = 100;
 	public float invulnerableDuration = 1;
-	public float blinkDuration = 0.5f;
+	public float blinkDuration = 0.25f;
 
 	private float invulnerableEndTime = 0;
 	private float blinkEndTime = 0;
@@ -19,7 +19,20 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Rigidbody2D ourRigidBody = GetComponent<Rigidbody2D> ();
-		ourRigidBody.velocity = Vector2.right * speed;
+
+		// Ge the current horixontal input (left/right arrows) - between -1 and 1.
+		float horizontal = Input.GetAxis ("Horizontal");
+
+		// Get the current velocity from the physics system
+		Vector2 velocity = ourRigidBody.velocity;
+
+		// Set our velocity based on the input and our speed value
+		velocity.x = horizontal * speed;
+
+		// Put this velocity back into the physics system
+		ourRigidBody.velocity = velocity;
+
+
 
 		// Handle blinking while invulnerable:
 
