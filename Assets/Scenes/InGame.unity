@@ -625,6 +625,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  jumpSpeed: 5
   health: 100
   invulnerableDuration: 1
   blinkDuration: 0.1
