@@ -38,6 +38,8 @@ public class InputPlatformer : MonoBehaviour {
 	public string m_inputButtonJump = "Jump";
 	[Tooltip("Name of the layer for touching the ground")]
 	public string m_layerGround = "Ground";
+	[Tooltip("The collider to use for checking ground touch on mario")]
+	public Collider2D m_footCollider;
 
 	[Header("Effects")]
 	[Tooltip("The animator that should be used for movement")]
@@ -98,15 +100,12 @@ public class InputPlatformer : MonoBehaviour {
 		// Handle jumping
 		// First we need to check if we are touching the ground!
 
-		// Get the collider attached to this player
-		Collider2D collider = GetComponent<Collider2D>();
-
 		// Get the LayerMask for the ground layer - we need this for our next
 		// function call.
 		LayerMask groundLayer = LayerMask.GetMask(m_layerGround);
 
 		// Ask the collider if we are touching the ground layer.
-		bool touchingGround = collider.IsTouchingLayers(groundLayer);
+		bool touchingGround = m_footCollider.IsTouchingLayers(groundLayer);
 
 		// Set our animator TouchingGround value to control our jumping/standing animation
 		if (m_animator != null && m_touchingGroundParameter != "") {

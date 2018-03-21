@@ -42,7 +42,6 @@ GameObject:
   - component: {fileID: 70671914813550810}
   - component: {fileID: 114916170871763268}
   - component: {fileID: 114787045170619944}
-  - component: {fileID: 114213039276027618}
   - component: {fileID: 114387995867835844}
   - component: {fileID: 114461542899856096}
   - component: {fileID: 114242771045528986}
@@ -86,6 +85,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1527722986927590
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4945079680053646}
+  - component: {fileID: 114286229814251982}
+  m_Layer: 0
+  m_Name: FireFlowerPower
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1916897152946534
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,6 +110,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4149566752108618}
   - component: {fileID: 61452991595508452}
+  - component: {fileID: 114893575647525572}
   m_Layer: 0
   m_Name: FeetTrigger
   m_TagString: Untagged
@@ -155,6 +171,19 @@ Transform:
   m_Father: {fileID: 4391413204026022}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4945079680053646
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1527722986927590}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4995929232102584}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4995929232102584
 Transform:
   m_ObjectHideFlags: 1
@@ -168,6 +197,7 @@ Transform:
   - {fileID: 4378804155707892}
   - {fileID: 4149566752108618}
   - {fileID: 4391413204026022}
+  - {fileID: 4945079680053646}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -228,7 +258,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -239,7 +269,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.8, y: 0.25}
   m_EdgeRadius: 0
 --- !u!70 &70671914813550810
 CapsuleCollider2D:
@@ -273,26 +303,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114213039276027618
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1160129602067192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd52392be72e04844948d10f07295ba0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_projectilePrefab: {fileID: 1072182634029154, guid: 87522b11b2001460ea3344034c81a6a3,
-    type: 2}
-  m_cooldownDuration: 1
-  m_projectileSpeed: 10
-  m_firingPoint: {fileID: 4378804155707892}
-  m_attackButton: Fire1
-  m_fireSound: {fileID: 0}
-  m_animator: {fileID: 0}
-  m_fireTrigger: 
 --- !u!114 &114242771045528986
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -311,6 +321,26 @@ MonoBehaviour:
   m_meleeSound: {fileID: 0}
   m_animator: {fileID: 0}
   m_meleeTrigger: 
+--- !u!114 &114286229814251982
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1527722986927590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd52392be72e04844948d10f07295ba0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_projectilePrefab: {fileID: 1072182634029154, guid: 87522b11b2001460ea3344034c81a6a3,
+    type: 2}
+  m_cooldownDuration: 1
+  m_projectileSpeed: 10
+  m_firingPoint: {fileID: 4378804155707892}
+  m_attackButton: Fire1
+  m_fireSound: {fileID: 0}
+  m_animator: {fileID: 0}
+  m_fireTrigger: 
 --- !u!114 &114387995867835844
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -385,6 +415,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_healthPool: {fileID: 114787045170619944}
   m_healthBarFill: {fileID: 212611321113679734}
+--- !u!114 &114893575647525572
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1916897152946534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eee1330539dd8941b74a25f36e13361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_damage: 10
+  m_targetType: enemy
 --- !u!114 &114916170871763268
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -398,11 +441,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_speed: 6
   m_jumpSpeed: 10
-  m_allowedAirJumps: 0
+  m_allowedAirJumps: 1
   m_inputAxisHorizontal: Horizontal
   m_inputButtonJump: Jump
   m_layerGround: Ground
-  m_animator: {fileID: 0}
+  m_footCollider: {fileID: 61452991595508452}
+  m_animator: {fileID: 95179501253349760}
   m_speedParameter: Speed
   m_touchingGroundParameter: TouchingGround
 --- !u!212 &212305867758466450
