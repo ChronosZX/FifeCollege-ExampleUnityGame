@@ -391,7 +391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad91b8d75e0af4347a34bbded0944adc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_maxHealth: 100
+  m_maxHealth: 20
   m_invulnDuration: 1
   m_destroyOnDeath: 0
   m_targetType: player
@@ -440,7 +440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_speed: 6
-  m_jumpSpeed: 10
+  m_jumpSpeed: 13
   m_allowedAirJumps: 1
   m_inputAxisHorizontal: Horizontal
   m_inputButtonJump: Jump

@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 58464526566253974}
   - component: {fileID: 114735711772645728}
   - component: {fileID: 114583213649668476}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Goomba
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4182436426844160}
   - component: {fileID: 212256365805282730}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: HealthBar-Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 4719764059615096}
   - component: {fileID: 212778181935146336}
   - component: {fileID: 114499332060374112}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
