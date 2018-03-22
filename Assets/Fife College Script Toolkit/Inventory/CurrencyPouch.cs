@@ -29,9 +29,27 @@ public class CurrencyPouch : MonoBehaviour {
 	public List<string> m_currencyNames = new List<string>();
 	[Tooltip("Optional: Text mesh to display this currency value. Must match order of names.")]
 	public List<TextMesh> m_currencyDisplay = new List<TextMesh>();
+	[Tooltip("Should we save these currencies to the player preferences?")]
+	public bool m_save = false;
 
 	// Private Variables
 	private Dictionary<string, int> m_currencyValues = new Dictionary<string, int>();
+	#endregion
+	// *****************************************************************************************************************
+
+
+	// *****************************************************************************************************************
+	#region Unity Functions
+	// *****************************************************************************************************************
+	// Called when the object is created
+	void Start()
+	{
+		// Load data if save is true
+		if (m_save == true)
+		{
+			LoadSaveData();
+		}
+	}
 	#endregion
 	// *****************************************************************************************************************
 
@@ -129,6 +147,35 @@ public class CurrencyPouch : MonoBehaviour {
 					// update the text display with the value
 					m_currencyDisplay[i].text = m_currencyValues[currencyName].ToString();
 				}
+			}
+		}
+	}
+	// *****************************************************************************************************************
+	private void UpdateSaveData()
+	{
+		// Loop through each of our currency currencies
+		for (int i = 0; i < m_currencyNames.Count; ++i) {
+			// get the name for this currency
+			string currencyName = m_currencyNames [i];
+			// If we have a value for this currency...
+			if (m_currencyValues.ContainsKey (currencyName)) {
+				// Save our value in the player preferences
+				PlayerPrefs.SetInt(currencyName, m_currencyValues[currencyName]);
+			}
+		}
+	}
+	// *****************************************************************************************************************
+	private void LoadSaveData()
+	{
+		// Loop through each of our currency currencies
+		for (int i = 0; i < m_currencyNames.Count; ++i) {
+			// get the name for this currency
+			string currencyName = m_currencyNames [i];
+			// If this currency is stored in preferences...
+			if (PlayerPrefs.HasKey(currencyName))
+			{
+				// load our value from the player preferences
+				m_currencyValues[currencyName] = PlayerPrefs.GetInt(currencyName);
 			}
 		}
 	}

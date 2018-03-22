@@ -90,7 +90,7 @@ Grid:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1155140653763058}
   m_Enabled: 1
-  m_CellSize: {x: 0.53333336, y: 0.53333336, z: 0}
+  m_CellSize: {x: 0.516129, y: 0.516129, z: 0}
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
@@ -269,9 +269,9 @@ Tilemap:
     e33: 1
   m_TileRefreshArray:
   - serializedVersion: 1
-    m_DirtyIndex: 34
+    m_DirtyIndex: 0
   - serializedVersion: 1
-    m_DirtyIndex: 234
+    m_DirtyIndex: 0
   - serializedVersion: 1
     m_DirtyIndex: 0
   - serializedVersion: 1

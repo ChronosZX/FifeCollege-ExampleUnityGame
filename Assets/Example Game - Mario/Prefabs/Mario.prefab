@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4378804155707892}
   - component: {fileID: 61222005290009640}
   - component: {fileID: 114556967215374146}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MeleeTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,10 @@ GameObject:
   - component: {fileID: 114387995867835844}
   - component: {fileID: 114461542899856096}
   - component: {fileID: 114242771045528986}
-  m_Layer: 0
+  - component: {fileID: 114621177794618964}
+  - component: {fileID: 114352186122912596}
+  - component: {fileID: 114063885479630376}
+  m_Layer: 10
   m_Name: Mario
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +65,7 @@ GameObject:
   - component: {fileID: 4391413204026022}
   - component: {fileID: 212774492274483754}
   - component: {fileID: 114845648380249056}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +81,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4812180646161678}
   - component: {fileID: 212611321113679734}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HealthBar-Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4945079680053646}
   - component: {fileID: 114286229814251982}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FireFlowerPower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +114,7 @@ GameObject:
   - component: {fileID: 4149566752108618}
   - component: {fileID: 61452991595508452}
   - component: {fileID: 114893575647525572}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FeetTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -303,6 +306,21 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114063885479630376
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1160129602067192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40fbbc224ed8648b4b1e54f0626014d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_startingLives: 3
+  m_saveKey: lives
+  m_livesDisplay: {fileID: 0}
+  m_gameOverScreen: 
 --- !u!114 &114242771045528986
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -341,6 +359,19 @@ MonoBehaviour:
   m_fireSound: {fileID: 0}
   m_animator: {fileID: 0}
   m_fireTrigger: 
+--- !u!114 &114352186122912596
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1160129602067192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83ba24af33cc042b6a17d0c75f83f6f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_healthPool: {fileID: 114787045170619944}
+  m_lives: {fileID: 114063885479630376}
 --- !u!114 &114387995867835844
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -356,6 +387,7 @@ MonoBehaviour:
   - score
   m_currencyDisplay:
   - {fileID: 0}
+  m_save: 0
 --- !u!114 &114461542899856096
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -380,6 +412,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_damage: 10
   m_targetType: enemy
+--- !u!114 &114621177794618964
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1160129602067192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15728bd1bdf064bf4bd949cd58a086bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_healthPool: {fileID: 114787045170619944}
 --- !u!114 &114787045170619944
 MonoBehaviour:
   m_ObjectHideFlags: 1
