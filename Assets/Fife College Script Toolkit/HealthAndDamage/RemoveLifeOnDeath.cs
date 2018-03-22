@@ -28,7 +28,7 @@ public class RemoveLifeOnDeath : MonoBehaviour {
 	[Tooltip("When this health pool dies, we'll lose a life")]
 	public HealthPool m_healthPool;
 	[Tooltip("This is the life pool we'll lose lives from")]
-	public Lives m_lives;
+	public LifePool m_lives;
 	#endregion
 	// *****************************************************************************************************************
 

@@ -1,5 +1,5 @@
 ﻿// *********************************************************************************************************************
-// File: Lives.cs
+// File: LifePool.cs
 // Purpose: Keeps track of the lives the player has left
 // Project: Fife College Unity Toolkit
 // Copyright Fife College 2018
@@ -19,7 +19,7 @@ using UnityEngine.SceneManagement;
 
 
 // *********************************************************************************************************************
-public class Lives : MonoBehaviour {
+public class LifePool : MonoBehaviour {
 // *********************************************************************************************************************
 
 
