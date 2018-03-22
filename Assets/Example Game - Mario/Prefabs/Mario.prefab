@@ -320,7 +320,7 @@ MonoBehaviour:
   m_startingLives: 3
   m_saveKey: lives
   m_livesDisplay: {fileID: 0}
-  m_gameOverScreen: 
+  m_gameOverScreen: Mario-TitleScreen
 --- !u!114 &114242771045528986
 MonoBehaviour:
   m_ObjectHideFlags: 1
