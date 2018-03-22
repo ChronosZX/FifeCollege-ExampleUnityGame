@@ -791,7 +791,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_tileMap: {fileID: 40846901}
   m_targetCollider: {fileID: 1920125832}
-  m_particlePrefab: {fileID: 0}
+  m_particlePrefab: {fileID: 1701837644873130, guid: 1bda597e957254e3ea83221b7ad83cfe,
+    type: 2}
 --- !u!1 &44964396
 GameObject:
   m_ObjectHideFlags: 0

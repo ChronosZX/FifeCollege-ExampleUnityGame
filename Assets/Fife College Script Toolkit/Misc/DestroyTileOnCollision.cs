@@ -65,7 +65,6 @@ public class DestroyTileOnCollision : MonoBehaviour {
 				// Set that tile to null (meaning delete it)
 				m_tileMap.SetTile(tilePosition, null);
 
-
 				Debug.Log("Deleting tile at "+tilePosition);
 			}
 
@@ -73,9 +72,10 @@ public class DestroyTileOnCollision : MonoBehaviour {
 			if (m_particlePrefab != null)
 			{
 				// Use instantiate to create our particle prefab at our hit position
-				Instantiate(m_particlePrefab,
-					m_targetCollider.transform.position,
-					Quaternion.identity);
+				GameObject particles = Instantiate(m_particlePrefab);
+
+				// Move our particles to the correct location
+				particles.transform.position = _collision.collider.transform.position;
 			}
 		}
 	}
