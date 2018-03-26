@@ -453,8 +453,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_currencyNames:
+  - coin
   - score
   m_currencyDisplay:
+  - {fileID: 0}
   - {fileID: 0}
   m_save: 0
 --- !u!114 &114461542899856096

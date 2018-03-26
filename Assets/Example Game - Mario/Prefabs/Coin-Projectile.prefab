@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212983811539006934}
   - component: {fileID: 50184057104590140}
   - component: {fileID: 58379663211064078}
+  - component: {fileID: 114045552979891436}
   m_Layer: 0
   m_Name: Coin-Projectile
   m_TagString: Untagged
@@ -77,6 +78,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
+--- !u!114 &114045552979891436
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1072182634029154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eee1330539dd8941b74a25f36e13361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_damage: 1
+  m_targetType: enemy
 --- !u!212 &212983811539006934
 SpriteRenderer:
   m_ObjectHideFlags: 1
