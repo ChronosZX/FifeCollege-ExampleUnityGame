@@ -33,6 +33,14 @@ public class Player : MonoBehaviour {
 		// Set our velocity based on the input and our speed value
 		velocity.x = horizontal * speed;
 
+		// get a reference to our animator
+		Animator ourAnimator = GetComponent<Animator>();
+
+		// determine what animator speed variable should be set to
+		float animatorSpeed = Mathf.Abs(velocity.x);
+
+		// set this value on the animator
+		ourAnimator.SetFloat("speed", animatorSpeed);
 
 		// Determine if touching ground
 		// Get the collider attached to this object
