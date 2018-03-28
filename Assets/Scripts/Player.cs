@@ -9,10 +9,12 @@ public class Player : MonoBehaviour {
 	public float health = 100;
 	public float invulnerableDuration = 1;
 	public float blinkDuration = 0.25f;
+	public int allowedAirJumps = 0;
 
 	private float invulnerableEndTime = 0;
 	private float blinkEndTime = 0;
-	private bool hasDoubleJumped = false;
+	//private bool hasDoubleJumped = false;
+	private int numAirJumps = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -44,14 +46,14 @@ public class Player : MonoBehaviour {
 
 		// if we are touching the ground, reset our double jump
 		if (isTouchingGround == true) {
-			hasDoubleJumped = false;
+			numAirJumps = 0;
 		}
 
 		// Normally only allowed to jump if touching the ground...
 		bool allowedToJump = isTouchingGround;
 
 		// If we aren't touching the ground but we haven't yet double jumped, allowed to jump should be true
-		if (isTouchingGround == false && hasDoubleJumped == false)
+		if (isTouchingGround == false && numAirJumps < allowedAirJumps)
 			allowedToJump = true;
 
 		// Jump logic
@@ -64,7 +66,7 @@ public class Player : MonoBehaviour {
 
 			// If we touched when we weren't on the ground, then we did a double jump
 			if (isTouchingGround == false)
-				hasDoubleJumped = true;
+				numAirJumps = numAirJumps + 1;
 		}
 
 
