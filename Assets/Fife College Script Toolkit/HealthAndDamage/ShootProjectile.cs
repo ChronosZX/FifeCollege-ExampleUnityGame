@@ -88,7 +88,7 @@ public class ShootProjectile : MonoBehaviour {
 			if (m_rotateProjectile)
 			{
 				float angle = Vector3.SignedAngle(Vector3.right,(Vector3)direction,Vector3.forward);
-				transform.localRotation = Quaternion.Euler(0,0,angle);
+				newProjectile.transform.localRotation = Quaternion.Euler(0,0,angle);
 			}
 
             // Record when our cooldown should end.
