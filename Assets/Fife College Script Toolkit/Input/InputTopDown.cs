@@ -36,7 +36,9 @@ public class InputTopDown : MonoBehaviour
     [Tooltip("Flip x based on velocity?")]
     public bool m_flipX = true;
     [Tooltip("Flip y based on velocity?")]
-    public bool m_flipY = true;
+	public bool m_flipY = false;
+	[Tooltip("Rotate based on velocity?")]
+	public bool m_rotate = false;
 
     [Header("Effects")]
     [Tooltip("The animator that should be used for movement")]
@@ -136,6 +138,14 @@ public class InputTopDown : MonoBehaviour
                     transform.localScale.z);
             }
         }
+
+		// Rotate based on the velocity
+		// We only want to do this if we have a velocity - otherwise we want to leave our rotation the same as it was when we stopped moving.
+		if (m_rotate && velocity.sqrMagnitude > 0)
+		{
+			float angle = Vector3.SignedAngle(Vector3.right,(Vector3)velocity,Vector3.forward);
+			transform.localRotation = Quaternion.Euler(0,0,angle);
+		}
 
     }
     #endregion
