@@ -34,7 +34,9 @@ public class ShootProjectile : MonoBehaviour {
 	[Tooltip("Point from which the projectile should be fired")]
 	public Transform m_firingPoint;
     [Tooltip("Button used to trigger attack")]
-    public string m_attackButton;
+	public string m_attackButton;
+	[Tooltip("Rotate projectile to match direction?")]
+	public bool m_rotateProjectile;
 
     [Header("Effects")]
 	[Tooltip("The sound that should be played on fire")]
@@ -81,6 +83,13 @@ public class ShootProjectile : MonoBehaviour {
             // Set our projectile's velocity based on the direction we want it to go
             // and our projectile speed variable
             projectileBody.velocity = direction * m_projectileSpeed;
+
+			// Rotate the projectile to match the velocity direction
+			if (m_rotateProjectile)
+			{
+				float angle = Vector3.SignedAngle(Vector3.right,(Vector3)direction,Vector3.forward);
+				transform.localRotation = Quaternion.Euler(0,0,angle);
+			}
 
             // Record when our cooldown should end.
             // This makes us unable to attack for m_cooldownDuration seconds
